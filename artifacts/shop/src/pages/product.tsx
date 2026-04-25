@@ -102,7 +102,7 @@ export default function ProductDetailPage({ cartCount, setCartCount }: ProductDe
 
         {/* ── LEFT: Vertical Image Slider ── */}
         <div
-          className="w-[55%] overflow-y-auto h-[calc(100vh-65px)] sticky top-[65px]"
+          className="w-[45%] overflow-y-auto h-[calc(100vh-65px)] sticky top-[65px]"
           data-testid="image-slider"
         >
           <div className="flex flex-col">
@@ -127,7 +127,7 @@ export default function ProductDetailPage({ cartCount, setCartCount }: ProductDe
         </div>
 
         {/* ── RIGHT: Product Details (sticky) ── */}
-        <div className="w-[45%] h-[calc(100vh-65px)] sticky top-[65px] overflow-y-auto">
+        <div className="w-[55%] h-[calc(100vh-65px)] sticky top-[65px] overflow-y-auto">
           <div className="px-8 py-10 flex flex-col gap-7">
 
             {/* Breadcrumb */}
