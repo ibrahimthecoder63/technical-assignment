@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { PRODUCTS, Product } from "@/lib/data";
 import { ProductModal } from "@/components/ProductModal";
 import { Badge } from "@/components/ui/badge";
@@ -49,6 +50,7 @@ function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClos
 }
 
 export default function Home({ cartCount, setCartCount }: HomeProps) {
+  const [, setLocation] = useLocation();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
   const { toast } = useToast();
@@ -175,9 +177,9 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
                     </span>
                   </div>
 
-                  {/* Show Details — opens full product modal */}
+                  {/* Show Details — navigates to full product detail page */}
                   <button
-                    onClick={() => setSelectedProduct(product)}
+                    onClick={() => setLocation(`/product/${product.id}`)}
                     className="w-full mt-1 py-2.5 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 active:scale-[0.98]"
                     data-testid={`button-show-details-${product.id}`}
                   >

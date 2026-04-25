@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import ProductDetailPage from "@/pages/product";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,9 @@ function Router() {
     <Switch>
       <Route path="/">
         <Home cartCount={cartCount} setCartCount={setCartCount} />
+      </Route>
+      <Route path="/product/:id">
+        <ProductDetailPage cartCount={cartCount} setCartCount={setCartCount} />
       </Route>
       <Route component={NotFound} />
     </Switch>
