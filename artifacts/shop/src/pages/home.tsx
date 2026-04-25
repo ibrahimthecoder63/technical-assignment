@@ -97,19 +97,19 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-muted py-20 px-6 border-b border-border/50">
-        <div className="max-w-7xl mx-auto text-center space-y-6">
-          <h2 className="text-5xl md:text-6xl font-serif font-medium text-foreground max-w-3xl mx-auto leading-tight">
+      <section className="bg-muted py-10 px-6 border-b border-border/50">
+        <div className="max-w-7xl mx-auto text-center space-y-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-medium text-foreground max-w-3xl mx-auto leading-tight">
             Curated essentials for the modern wardrobe.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-sans">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto font-sans">
             Discover our latest collection of thoughtfully designed pieces crafted from premium materials.
           </p>
         </div>
       </section>
 
       {/* Product Grid */}
-      <main className="flex-grow max-w-7xl mx-auto px-6 py-16 w-full">
+      <main className="flex-grow max-w-7xl mx-auto px-6 py-10 w-full">
         <div className="flex items-center justify-between mb-10">
           <h3 className="text-2xl font-serif font-medium">New Arrivals</h3>
           <span className="text-sm text-muted-foreground">{PRODUCTS.length} products</span>
