@@ -3,15 +3,54 @@ import { PRODUCTS, Product } from "@/lib/data";
 import { ProductModal } from "@/components/ProductModal";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HomeProps {
   cartCount: number;
   setCartCount: (count: number) => void;
 }
 
+function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+        onClick={onClose}
+        data-testid="lightbox-overlay"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+          data-testid="button-close-lightbox"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <motion.img
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.94 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          src={src}
+          alt={alt}
+          className="max-h-[85vh] max-w-[90vw] object-contain rounded-2xl shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+          data-testid="img-lightbox"
+        />
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function Home({ cartCount, setCartCount }: HomeProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
   const { toast } = useToast();
 
   const handleAddToCart = (product: Product, quantity: number) => {
@@ -33,18 +72,18 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
           </div>
           <div className="flex items-center gap-6">
             <span className="text-sm font-medium text-muted-foreground tracking-wide uppercase">SS26 Collection</span>
-            <button 
+            <button
               className="relative p-2 text-foreground hover:bg-muted rounded-full transition-colors"
               data-testid="button-cart"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
               {cartCount > 0 && (
-                <span 
-                  className="absolute 0 right-0 top-0 translate-x-1/4 -translate-y-1/4 bg-primary text-primary-foreground text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-background"
+                <span
+                  className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 bg-primary text-primary-foreground text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-background"
                   data-testid="badge-cart-count"
                 >
                   {cartCount}
@@ -90,10 +129,11 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
                 className="group flex flex-col"
                 data-testid={`card-product-${product.id}`}
               >
-                {/* Product Image */}
-                <div 
-                  className="relative aspect-[3/4] overflow-hidden bg-muted rounded-2xl mb-5 cursor-pointer"
-                  onClick={() => setSelectedProduct(product)}
+                {/* Product Image — click opens lightbox */}
+                <div
+                  className="relative aspect-[3/4] overflow-hidden bg-muted rounded-2xl mb-5 cursor-zoom-in"
+                  onClick={() => setLightboxImage({ src: product.images[0], alt: product.title })}
+                  data-testid={`button-quick-view-${product.id}`}
                 >
                   <img
                     src={product.images[0]}
@@ -113,10 +153,10 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
                 {/* Product Info */}
                 <div className="space-y-3">
                   <div>
-                    <h3 className="font-serif text-lg text-foreground">
+                    <h3 className="font-serif text-lg text-foreground" data-testid={`text-title-${product.id}`}>
                       {product.title}
                     </h3>
-                    <p className="text-muted-foreground mt-1 text-sm font-medium">
+                    <p className="text-muted-foreground mt-1 text-sm font-medium" data-testid={`text-price-${product.id}`}>
                       ${product.price}
                     </p>
                   </div>
@@ -135,6 +175,7 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
                     </span>
                   </div>
 
+                  {/* Show Details — opens full product modal */}
                   <button
                     onClick={() => setSelectedProduct(product)}
                     className="w-full mt-1 py-2.5 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 active:scale-[0.98]"
@@ -157,7 +198,16 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
         </div>
       </footer>
 
-      {/* Modal */}
+      {/* Image Lightbox */}
+      {lightboxImage && (
+        <ImageLightbox
+          src={lightboxImage.src}
+          alt={lightboxImage.alt}
+          onClose={() => setLightboxImage(null)}
+        />
+      )}
+
+      {/* Full Detail Modal */}
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
