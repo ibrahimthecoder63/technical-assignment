@@ -46,16 +46,16 @@ export const PRODUCTS: Product[] = [
           name: "Slate Blue",
           hex: "#6B7FA3",
           images: [
+            "https://images.unsplash.com/photo-1563630423918-b58f07336ac9?w=800&q=80",
             "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&q=80",
-            "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&q=80",
           ],
         },
         {
           name: "Sage",
           hex: "#8FAF8A",
           images: [
-            "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80",
-            "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&q=80",
+            "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80",
+            "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&q=80",
           ],
         },
       ],
@@ -89,15 +89,15 @@ export const PRODUCTS: Product[] = [
           hex: "#1B2A4A",
           images: [
             "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80",
-            "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&q=80",
+            "https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990?w=800&q=80",
           ],
         },
         {
           name: "Olive",
           hex: "#6B7346",
           images: [
-            "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&q=80",
-            "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&q=80",
+            "https://images.unsplash.com/photo-1609803384069-19f3f4f14185?w=800&q=80",
+            "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&q=80",
           ],
         },
       ],
@@ -131,23 +131,23 @@ export const PRODUCTS: Product[] = [
           hex: "#3D3D3D",
           images: [
             "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80",
-            "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80",
+            "https://images.unsplash.com/photo-1614495851046-0b647f656db9?w=800&q=80",
           ],
         },
         {
           name: "Rust",
           hex: "#B7472A",
           images: [
-            "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
-            "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80",
+            "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&q=80",
+            "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80",
           ],
         },
         {
           name: "Forest",
           hex: "#355E3B",
           images: [
-            "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80",
             "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80",
+            "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80",
           ],
         },
       ],
@@ -181,7 +181,7 @@ export const PRODUCTS: Product[] = [
           hex: "#1A1A1A",
           images: [
             "https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=800&q=80",
-            "https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?w=800&q=80",
+            "https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80",
           ],
         },
       ],
