@@ -112,17 +112,15 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
 
                 {/* Product Info */}
                 <div className="space-y-3">
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h3 className="font-serif text-lg text-foreground cursor-pointer hover:text-primary transition-colors" onClick={() => setSelectedProduct(product)}>
-                        {product.title}
-                      </h3>
-                      <p className="text-muted-foreground mt-1 text-sm font-medium">
-                        ${product.price}
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="font-serif text-lg text-foreground">
+                      {product.title}
+                    </h3>
+                    <p className="text-muted-foreground mt-1 text-sm font-medium">
+                      ${product.price}
+                    </p>
                   </div>
-                  
+
                   <div className="flex items-center gap-2">
                     {product.variants.colors.map((c) => (
                       <span
@@ -136,6 +134,14 @@ export default function Home({ cartCount, setCartCount }: HomeProps) {
                       {product.variants.colors.length} Colors
                     </span>
                   </div>
+
+                  <button
+                    onClick={() => setSelectedProduct(product)}
+                    className="w-full mt-1 py-2.5 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 active:scale-[0.98]"
+                    data-testid={`button-show-details-${product.id}`}
+                  >
+                    Show Details
+                  </button>
                 </div>
               </motion.div>
             ))}
